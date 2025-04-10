@@ -17,4 +17,5 @@ object RetrofitInstance {
     fun provideApiService(): MealApiService {
         return getInstance().create(MealApiService::class.java)
     }
+    val mealApiService: MealApiService = getInstance().create(MealApiService::class.java)
 }

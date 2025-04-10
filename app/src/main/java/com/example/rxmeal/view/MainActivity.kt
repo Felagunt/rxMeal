@@ -38,16 +38,17 @@ import coil3.compose.SubcomposeAsyncImage
 import com.example.rxmeal.view.ui.theme.RxMealTheme
 import com.example.rxmeal.viewModel.MealViewModel
 import com.example.rxmeal.viewModel.UiState
+import org.koin.compose.viewmodel.koinViewModel
 
 class MainActivity : ComponentActivity() {
 
-    val viewModel: MealViewModel by viewModels()
+    //val viewModel: MealViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             RxMealTheme {
-
+                val viewModel = koinViewModel<MealViewModel>()
                 val state by viewModel.state.collectAsStateWithLifecycle()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     var query by rememberSaveable { mutableStateOf("") }
