@@ -4,7 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlinx.serialization)
     id("kotlin-parcelize")
-    kotlin("kapt")
+    //kotlin("kapt")
+    alias(libs.plugins.ksp)
 
 }
 
@@ -87,4 +88,7 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.core)
     //implementation(libs.koin.bom)
+
+    implementation(libs.androidx.room.rxjava3)
+    ksp(libs.androidx.room.compiler)
 }

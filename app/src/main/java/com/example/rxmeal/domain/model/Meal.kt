@@ -1,6 +1,6 @@
-package com.example.rxmeal.model.dto
+package com.example.rxmeal.domain.model
 
-data class MealDto(
+data class Meal(
     val idMeal: String,
     val strArea: String,
     val strCategory: String,

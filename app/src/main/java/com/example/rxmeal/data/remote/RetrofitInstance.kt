@@ -1,4 +1,4 @@
-package com.example.rxmeal.model
+package com.example.rxmeal.data.remote
 
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory

@@ -1,6 +1,6 @@
 package com.example.rxmeal.di
 
-import com.example.rxmeal.model.MealApiService
+import com.example.rxmeal.data.remote.MealApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module

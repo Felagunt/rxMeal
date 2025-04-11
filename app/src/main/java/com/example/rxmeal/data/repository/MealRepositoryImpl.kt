@@ -1,5 +1,6 @@
-package com.example.rxmeal.model
+package com.example.rxmeal.data.repository
 
+import com.example.rxmeal.data.remote.MealApiService
 import com.example.rxmeal.domain.repository.MealRepository
 
 class MealRepositoryImpl(

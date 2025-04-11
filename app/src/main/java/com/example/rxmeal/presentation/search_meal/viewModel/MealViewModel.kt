@@ -1,9 +1,8 @@
-package com.example.rxmeal.viewModel
+package com.example.rxmeal.presentation.search_meal.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.example.rxmeal.domain.use_case.SearchUseCase
-import com.example.rxmeal.model.MealRepositoryImpl
-import com.example.rxmeal.model.dto.MealDto
+import com.example.rxmeal.data.dto.MealDto
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.subjects.PublishSubject
 import kotlinx.coroutines.flow.MutableStateFlow

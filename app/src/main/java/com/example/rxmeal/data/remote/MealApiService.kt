@@ -1,6 +1,6 @@
-package com.example.rxmeal.model
+package com.example.rxmeal.data.remote
 
-import com.example.rxmeal.model.dto.MealResponse
+import com.example.rxmeal.data.dto.MealResponse
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

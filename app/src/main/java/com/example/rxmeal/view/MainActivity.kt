@@ -36,8 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.SubcomposeAsyncImage
 import com.example.rxmeal.view.ui.theme.RxMealTheme
-import com.example.rxmeal.viewModel.MealViewModel
-import com.example.rxmeal.viewModel.UiState
+import com.example.rxmeal.presentation.search_meal.viewModel.MealViewModel
+import com.example.rxmeal.presentation.search_meal.viewModel.UiState
 import org.koin.compose.viewmodel.koinViewModel
 
 class MainActivity : ComponentActivity() {
