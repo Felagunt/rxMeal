@@ -10,7 +10,7 @@ val localModule = module {
 
     single {
         Room.databaseBuilder(
-            androidApplication(),
+            get(),
             MealDatabase::class.java,
             "meal.db"
         ).build()

@@ -6,8 +6,8 @@ data class MealDto(
     val strCategory: String,
     val strInstructions: String,
     val strMeal: String,
-    val strMealAlternate: Any,
+    val strMealAlternate: String? = null,
     val strMealThumb: String,
-    val strTags: String,
+    val strTags: String? = null,
     val strYoutube: String
 )

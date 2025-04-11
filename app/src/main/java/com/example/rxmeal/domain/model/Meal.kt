@@ -6,7 +6,7 @@ data class Meal(
     val strCategory: String,
     val strInstructions: String,
     val strMeal: String,
-    val strMealAlternate: Any,
+    val strMealAlternate: String,
     val strMealThumb: String,
     val strTags: String,
     val strYoutube: String

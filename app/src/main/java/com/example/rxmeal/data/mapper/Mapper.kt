@@ -25,9 +25,9 @@ fun MealDto.toMeal(): Meal {
         strCategory = strCategory,
         strInstructions = strInstructions,
         strMeal = strMeal,
-        strMealAlternate = strMealAlternate,
+        strMealAlternate = strMealAlternate.orEmpty(),
         strMealThumb = strMealThumb,
-        strTags = strTags,
+        strTags = strTags.orEmpty(),
         strYoutube = strYoutube
     )
 }
