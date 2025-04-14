@@ -12,5 +12,7 @@ class DeleteMealFromLocalUseCase(
 ) {
         fun execute(meal: Meal): Completable {
             return repository.deleteMeal(meal)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
         }
 }

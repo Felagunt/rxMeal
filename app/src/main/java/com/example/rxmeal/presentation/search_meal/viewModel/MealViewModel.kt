@@ -38,8 +38,8 @@ class MealViewModel(
 
     private fun loadFavorite() {
         getAllFromLocalUseCase.execute()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { list ->
                     _state.update {
@@ -51,7 +51,7 @@ class MealViewModel(
                 { error ->
                     _state.update {
                         it.copy(
-                            error = error.localizedMessage.toString()
+                            error = error.localizedMessage?.toString()
                         )
                     }
                 }
@@ -72,7 +72,7 @@ class MealViewModel(
                     _state.update { UiState(results = results) }
                 },
                 { error ->
-                    _state.update { UiState(error = error?.localizedMessage.toString()) }
+                    _state.update { UiState(error = error.localizedMessage?.toString()) }
                 }
             )
         compositeDisposable.add(dispose)
@@ -103,7 +103,7 @@ class MealViewModel(
 
 data class UiState(
     val isLoading: Boolean = false,
-    val error: String = "",
+    val error: String? = null,
     val results: List<Meal>? = null,
     val favorite: List<Meal>? = null
 )

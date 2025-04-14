@@ -106,7 +106,7 @@ fun MainContent(
                     )
                 }
             }
-            if(state.error.isNotEmpty()) {
+            if(state.error?.isNotEmpty() == true) {
                 Box(Modifier.padding(paddingValues).fillMaxSize()) {
                     Text(
                         text = state.error,
