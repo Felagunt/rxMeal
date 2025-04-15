@@ -18,6 +18,6 @@ class SearchUseCase(
         }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnError {  }
+            //.doOnError {  }
     }
 }

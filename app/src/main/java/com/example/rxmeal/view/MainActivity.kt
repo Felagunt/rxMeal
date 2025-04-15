@@ -35,6 +35,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.SubcomposeAsyncImage
+import com.example.rxmeal.presentation.search_meal.MealScreenRoot
 import com.example.rxmeal.view.ui.theme.RxMealTheme
 import com.example.rxmeal.presentation.search_meal.viewModel.MealViewModel
 import com.example.rxmeal.presentation.search_meal.viewModel.UiState
@@ -42,7 +43,6 @@ import org.koin.compose.viewmodel.koinViewModel
 
 class MainActivity : ComponentActivity() {
 
-    //val viewModel: MealViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -52,127 +52,11 @@ class MainActivity : ComponentActivity() {
                 val state by viewModel.state.collectAsStateWithLifecycle()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     var query by rememberSaveable { mutableStateOf("") }
-                    MainContent(
-                        modifier = Modifier.padding(innerPadding),
-                        state = state,
-                        value = query,
-                        onValueChange = {
-                            query = it
-                            viewModel.updateQuery(it)
-                        }
+                    MealScreenRoot(
+                        viewModel = viewModel
                     )
                 }
             }
         }
     }
-}
-
-
-@Composable
-fun MainContent(
-    modifier: Modifier = Modifier,
-    state: UiState,
-    value: String,
-    onValueChange: (String) -> Unit
-) {
-
-    Scaffold(
-        modifier = modifier
-            .fillMaxSize(),
-        topBar = {
-            TextField(
-                value = value,
-                onValueChange = onValueChange,
-                modifier = Modifier
-                    .fillMaxWidth(),
-                colors = TextFieldDefaults.colors(
-                    unfocusedIndicatorColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Transparent
-                ),
-                placeholder = {
-                    Text(
-                        text = "Search..."
-                    )
-                }
-            )
-        }
-    ) { paddingValues ->
-
-            if (state.isLoading) {
-                Box(Modifier.padding(paddingValues).fillMaxSize())
-                {
-                    CircularProgressIndicator(
-                        Modifier.align(Alignment.Center)
-                    )
-                }
-            }
-            if(state.error?.isNotEmpty() == true) {
-                Box(Modifier.padding(paddingValues).fillMaxSize()) {
-                    Text(
-                        text = state.error,
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                    )
-                }
-            }
-            state.results?.let { list ->
-                if(list.isNotEmpty()) {
-                    LazyColumn(
-                        modifier = Modifier
-                            .padding(paddingValues)
-                            .fillMaxSize(),
-                        verticalArrangement = Arrangement.spacedBy(15.dp)
-                    ) {
-                        items(list) { meal ->
-                            Card(
-                                modifier = Modifier
-                                    .padding(12.dp)
-                                    .fillMaxWidth(),
-                                shape = RoundedCornerShape(12.dp)
-                            ) {
-                                Column(
-
-                                ) {
-                                    SubcomposeAsyncImage(
-                                        model = meal.strMealThumb,
-                                        contentDescription = null,
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .height(320.dp),
-                                        loading = {
-                                            Box(
-                                                modifier = Modifier
-                                                    .fillMaxSize(),
-                                                contentAlignment = Alignment.Center
-                                            ) {
-                                                CircularProgressIndicator()
-                                            }
-                                        },
-                                        contentScale = ContentScale.Crop
-                                    )
-                                    Text(
-                                        text = meal.strMeal,
-                                        style = MaterialTheme.typography.headlineMedium,
-                                        modifier = Modifier
-                                            .padding(horizontal = 12.dp,vertical = 12.dp)
-                                            .fillMaxWidth()
-                                    )
-                                    Text(
-                                        text = meal.strInstructions,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        modifier = Modifier
-                                            .fillMaxWidth(),
-                                        maxLines = 4,
-                                        overflow = TextOverflow.Ellipsis
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-
-
 }
