@@ -11,11 +11,12 @@ import org.koin.core.context.startKoin
 class MealApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        fun startKoinApp(context: Context) {
-            startKoin {
-                androidContext(context)//TODO
-                modules(appModule, networkModule, localModule)
-            }
+        startKoinApp(this)
+    }
+    fun startKoinApp(context: Context) {
+        startKoin {
+            androidContext(context)//TODO
+            modules(appModule, networkModule, localModule)
         }
     }
 }

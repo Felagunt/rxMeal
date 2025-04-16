@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
@@ -26,7 +27,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun MealScreenRoot(
-    viewModel: MealViewModel = koinViewModel()
+    viewModel: MealViewModel = koinViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -58,7 +59,11 @@ fun MainMealScreen(
                 value = state.searchQuery,
                 onValueChange = { onAction(MealAction.OnSearchQueryChange(it)) }
             )
-        }
+        },
+        modifier = Modifier
+            .fillMaxSize()
+            .systemBarsPadding()
+            .padding(8.dp)
     ) { padding ->
         when {
             state.isLoading -> Box(

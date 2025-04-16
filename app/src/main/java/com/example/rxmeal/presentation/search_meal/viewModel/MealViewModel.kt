@@ -75,21 +75,20 @@ class MealViewModel(
     }
 
 
-
     private fun searchMeal(query: String) {
         _state.update { it.copy(searchQuery = query) }
 
-                searchUseCase.execute(query)
-                    .doOnSubscribe {
-                        _state.update { it.copy(isLoading = true, errorMsg = null) }
-                    }
+        searchUseCase.execute(query)
+            .doOnSubscribe {
+                _state.update { it.copy(isLoading = true, errorMsg = null) }
+            }
             .subscribe(
                 { meals ->
                     _state.update { it.copy(meals = meals, isLoading = false) }
                 },
                 { error ->
                     val msg = RxErrorHandler.handle(error)
-                    _state.update {it.copy(errorMsg = msg, isLoading = false) }
+                    _state.update { it.copy(errorMsg = msg, isLoading = false) }
                     viewModelScope.launch { _effect.emit(MealEffect.ShowToast(msg)) }
                 }
             )
@@ -101,12 +100,12 @@ class MealViewModel(
 
     private fun upsert(meal: Meal) {
         upsertMealLocalUseCase.execute(meal)
-            .subscribe({},{}).addTo(compositeDisposable)
+            .subscribe({}, {}).addTo(compositeDisposable)
     }
 
     private fun delete(meal: Meal) {
         deleteMealFromLocalUseCase.execute(meal)
-            .subscribe({},{}).addTo(compositeDisposable)
+            .subscribe({}, {}).addTo(compositeDisposable)
     }
 
 
